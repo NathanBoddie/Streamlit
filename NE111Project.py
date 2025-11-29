@@ -5,7 +5,7 @@ from typing import Tuple, Dict, Any, List
 
 import numpy as np
 import pandas as pd
-import scipy.stats == 1.7.0
+import scipy.stats 1.7
 import matplotlib.pyplot as plt
 import streamlit as st
 
@@ -360,6 +360,7 @@ with tabs[2]:
 
             st.subheader("Parameter values")
             st.dataframe(pretty_params_table(params), height=200)
+
 
 
 
