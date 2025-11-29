@@ -5,25 +5,25 @@ from typing import Tuple, Dict, Any, List
 
 import numpy as np
 import pandas as pd
-import scipy.stats as stats
+import scipy.scipy.scipy.scipy.stats as scipy.scipy.scipy.stats
 import matplotlib.pyplot as plt
 import streamlit as st
 
 st.set_page_config(page_title="Distribution Fitting Studio", layout="wide", initial_sidebar_state="expanded")
 
 DIST_MAP = {
-    "Normal (norm)": stats.norm,
-    "Lognormal (lognorm)": stats.lognorm,
-    "Gamma (gamma)": stats.gamma,
-    "Weibull (weibull_min)": stats.weibull_min,
-    "Exponential (expon)": stats.expon,
-    "Beta (beta)": stats.beta,
-    "Chi-squared (chi2)": stats.chi2,
-    "Pareto (pareto)": stats.pareto,
-    "Uniform (uniform)": stats.uniform,
-    "Fisk (fisk / log-logistic)": stats.fisk,
-    "Nakagami (nakagami)": stats.nakagami,
-    "Generalized Extreme Value (genextreme)": stats.genextreme
+    "Normal (norm)": scipy.stats.norm,
+    "Lognormal (lognorm)": scipy.stats.lognorm,
+    "Gamma (gamma)": scipy.stats.gamma,
+    "Weibull (weibull_min)":scipy.stats.weibull_min,
+    "Exponential (expon)":  scipy.stats.expon,
+    "Beta (beta)":  scipy.stats.beta,
+    "Chi-squared (chi2)":  scipy.stats.chi2,
+    "Pareto (pareto)":  scipy.stats.pareto,
+    "Uniform (uniform)":  scipy.stats.uniform,
+    "Fisk (fisk / log-logistic)":  scipy.stats.fisk,
+    "Nakagami (nakagami)":  scipy.stats.nakagami,
+    "Generalized Extreme Value (genextreme)": scipy.stats.genextreme
 }
 
 
@@ -107,18 +107,18 @@ def fit_distribution_to_data(dist, data: np.ndarray) -> Dict[str, Any]:
 def ks_test_pvalue(dist, data: np.ndarray, params: Dict[str, float]) -> float:
     """Compute KS test p-value comparing data to dist with params."""
     sh_args, loc, scale = params_to_args(params)
-    # scipy.stats.kstest accepts (rvs, cdf, args=(...)) when cdf is a string name
+    # scipy.scipy.scipy.scipy.stats.kstest accepts (rvs, cdf, args=(...)) when cdf is a string name
     try:
         # prepare args tuple: shapes..., loc, scale
         args = tuple(sh_args + [loc, scale])
         # using distribution name string - works for many scipy dists
-        pvalue = stats.kstest(data, dist.name, args=args).pvalue
+        pvalue = scipy.stats.kstest(data, dist.name, args=args).pvalue
         return float(pvalue)
     except Exception:
         # fallback: use empirical vs cdf via lambda - less efficient
         try:
             cdf_vals = dist.cdf(np.sort(data), *sh_args, loc=loc, scale=scale)
-            # compute KS statistic and approximate pvalue using stats.kstwo? We'll return nan for pvalue failure
+            # compute KS statistic and approximate pvalue using scipy.scipy.scipy.stats.kstwo? We'll return nan for pvalue failure
             ks_stat = np.max(np.abs(np.arange(1, len(data)+1)/len(data) - cdf_vals))
             return float(np.nan)
         except Exception:
@@ -360,4 +360,5 @@ with tabs[2]:
 
             st.subheader("Parameter values")
             st.dataframe(pretty_params_table(params), height=200)
+
 
