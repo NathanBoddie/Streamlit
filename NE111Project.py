@@ -13,7 +13,6 @@ st.set_page_config(page_title="Distribution Fitting Studio", layout="wide", init
 
 DIST_MAP = {
     "Normal (norm)": scipy.stats.norm,
-    "Lognormal (lognorm)": scipy.stats.lognorm,
     "Gamma (gamma)": scipy.stats.gamma,
     "Weibull (weibull_min)":scipy.stats.weibull_min,
     "Exponential (expon)":  scipy.stats.expon,
@@ -22,6 +21,7 @@ DIST_MAP = {
     "Pareto (pareto)":  scipy.stats.pareto,
     "Uniform (uniform)":  scipy.stats.uniform,
     "Fisk (fisk / log-logistic)":  scipy.stats.fisk,
+    "Lognormal (lognorm)": scipy.stats.lognorm,
     "Nakagami (nakagami)":  scipy.stats.nakagami,
     "Generalized Extreme Value (genextreme)": scipy.stats.genextreme
 }
@@ -360,6 +360,7 @@ with tabs[2]:
 
             st.subheader("Parameter values")
             st.dataframe(pretty_params_table(params), height=200)
+
 
 
 
