@@ -220,7 +220,7 @@ with tabs[1]:
             st.subheader("Choose distribution(s)")
             dist_options = list(DIST_MAP.keys())
             selected = st.multiselect("Select distributions to fit (multiple allowed)", dist_options,
-                                      default=["Normal (norm)", "Lognormal (lognorm)", "Gamma (gamma)"])
+                                      default=["Normal (norm)"])
             st.write("Fitting options:")
             bins = st.slider("Bins for histogram vs pdf comparison", 10, 200, 60)
             show_legend = st.checkbox("Show legend on plot", True)
@@ -360,6 +360,7 @@ with tabs[2]:
 
             st.subheader("Parameter values")
             st.dataframe(pretty_params_table(params), height=200)
+
 
 
 
